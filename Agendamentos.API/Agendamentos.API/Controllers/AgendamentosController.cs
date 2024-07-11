@@ -1,3 +1,5 @@
+using Agendamentos.Entidade.DTO;
+using Agendamentos.Negocio.Interface.INegocios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agendamentos.API.Controllers
@@ -9,38 +11,42 @@ namespace Agendamentos.API.Controllers
         private static List<string> AgendamentosMarcados { get; set; } = new() { "Ag1", "Ag2", "Ag3" };
 
         private readonly ILogger<AgendamentosController> _logger;
+        private readonly IAgendamentoNegocio _agendamentoNegocio;
 
-        public AgendamentosController(ILogger<AgendamentosController> logger)
+        public AgendamentosController(ILogger<AgendamentosController> logger, IAgendamentoNegocio agendamentoNegocio)
         {
             _logger = logger;
+            _agendamentoNegocio = agendamentoNegocio;
         }
 
-        [HttpGet(Name = "GetAgendamentos")]
-        public ActionResult<List<string>> Get()
+        [HttpGet("GetAgendamentos")] //retorna a lista de ag
+        public ActionResult<List<AgendamentoDTO>> ListarTodos()
         {
-            return AgendamentosMarcados;
+            return _agendamentoNegocio.ListarAgendamentos(null);
         }
 
-        [HttpPost(Name = "PostAgendamentos")]
-        public ActionResult<List<string>> Post(string novoAgendamento)
+        [HttpGet("FilterAgendamentos")] //retorna o ag enviado
+        public ActionResult<List<AgendamentoDTO>> FiltrarAgendamentos(string agendamentos)
         {
-            AgendamentosMarcados.Add(novoAgendamento);
-            return AgendamentosMarcados;
+            return _agendamentoNegocio.ListarAgendamentos(new List<string>() { agendamentos });
         }
 
-        [HttpDelete(Name = "DelAgendamentos")]
-        public ActionResult<List<string>> Delete(string agendamento)
+        [HttpPost("PostAgendamentos")] //adiciona um ag
+        public ActionResult<List<AgendamentoDTO>> Post(string novoAgendamento)
         {
-            AgendamentosMarcados.Remove(agendamento);
-            return AgendamentosMarcados;
+            return _agendamentoNegocio.InserirAgendamentos(novoAgendamento);
         }
 
-        [HttpPut(Name = "AltAgendamentos")]
-        public ActionResult<List<string>> Put(string agendamento, string novoNomeAg)
+        [HttpDelete("DelAgendamentos")]
+        public ActionResult<List<AgendamentoDTO>> Delete(string agendamento) //remove um ag
         {
-            var indexAgendamento = AgendamentosMarcados.FindIndex(ag => ag == agendamento);
-            AgendamentosMarcados[indexAgendamento] = novoNomeAg;
-            return AgendamentosMarcados;
+            return _agendamentoNegocio.DeletarAgendamentos(agendamento);
+        }
+
+        [HttpPut("AltAgendamentos")] //altera um ag
+        public ActionResult<List<AgendamentoDTO>> Put(string agendamento, string novoNomeAg)
+        {
+            return _agendamentoNegocio.AlterarAgendamentos(agendamento, novoNomeAg);
         }
     }
 }
