@@ -61,11 +61,47 @@ namespace Agendamentos.Utilitarios.Messages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Agendamento &quot;{0}&quot; já existe..
+        /// </summary>
+        public static string AgendamentoExistente {
+            get {
+                return ResourceManager.GetString("AgendamentoExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Agendamento &quot;{0}&quot; não existe na base..
         /// </summary>
         public static string AgendamentoInexistente {
             get {
                 return ResourceManager.GetString("AgendamentoInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo &quot;{0}&quot; não pode ficar vazio..
+        /// </summary>
+        public static string CampoObrigatorio {
+            get {
+                return ResourceManager.GetString("CampoObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Paciente &quot;{0}&quot; já existe..
+        /// </summary>
+        public static string PacienteExistente {
+            get {
+                return ResourceManager.GetString("PacienteExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tamanho máximo &quot;{0}&quot; de caracteres atingido no campo &quot;{0}&quot;.
+        /// </summary>
+        public static string TamanhoMaximo {
+            get {
+                return ResourceManager.GetString("TamanhoMaximo", resourceCulture);
             }
         }
     }

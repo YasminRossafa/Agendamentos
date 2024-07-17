@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgendamentoExistente" xml:space="preserve">
+    <value>Agendamento "{0}" já existe.</value>
+  </data>
   <data name="AgendamentoInexistente" xml:space="preserve">
     <value>Agendamento "{0}" não existe na base.</value>
+  </data>
+  <data name="CampoObrigatorio" xml:space="preserve">
+    <value>O campo "{0}" não pode ficar vazio.</value>
+  </data>
+  <data name="PacienteExistente" xml:space="preserve">
+    <value>Paciente "{0}" já existe.</value>
+  </data>
+  <data name="TamanhoMaximo" xml:space="preserve">
+    <value>Tamanho máximo "{0}" de caracteres atingido no campo "{0}"</value>
   </data>
 </root>

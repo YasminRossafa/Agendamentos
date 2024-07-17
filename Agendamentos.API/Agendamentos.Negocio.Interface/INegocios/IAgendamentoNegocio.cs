@@ -1,14 +1,15 @@
 ﻿
 
 using Agendamentos.Entidade.DTO;
+using Agendamentos.Entidade.Models;
 
 namespace Agendamentos.Negocio.Interface.INegocios
 {
     public interface IAgendamentoNegocio
     {
-        List<AgendamentoDTO> ListarAgendamentos(List<string> agendamentos);
-        List<AgendamentoDTO> InserirAgendamentos(string agendamento);
-        List<AgendamentoDTO> DeletarAgendamentos(string agendamento);
-        List<AgendamentoDTO> AlterarAgendamentos(string agendamento, string novoAg);
+        Task<List<AgendamentoDTO>> ListarAgendamentos(List<int> agendamentos);
+        Task<List<AgendamentoDTO>> InserirAgendamentos(CadastroAgendamentoModel agendamento);
+        Task<List<AgendamentoDTO>> DeletarAgendamentos(int id);
+        Task<List<AgendamentoDTO>> AlterarAgendamentos(int idAgendamento, CadastroAgendamentoModel novoAg);
     }
 }

@@ -1,16 +1,13 @@
-﻿
-
-using Agendamentos.Entidade.DTO;
+﻿using Agendamentos.Entidade.DTO;
 using Agendamentos.Entidade.Entidades;
+using Agendamentos.Repositorio.Interface.IRepositorios;
 
 namespace Agendamentos.Repositorio.Interface.IAgendamentoRepositorio
 {
-    public interface IAgendamentoRepositorio
+    public interface IAgendamentoRepositorio : IRepositorioBase<Agendamento>
     {
-        List<AgendamentoDTO> ListarAgendamentos(List<string> agendamentos);
-        List<AgendamentoDTO> ListarTudo();
-        void Inserir(Agendamento agendamento);
-        void Deletar(Agendamento agendamento);
-        Agendamento? ObterAg(string tituloAg);
+        Task<List<AgendamentoDTO>> ListarAgendamentos(List<int> agendamentos);
+        Task<List<AgendamentoDTO>> ListarTudo();
+        Task<Agendamento> ObterAg(int id);
     }
 }

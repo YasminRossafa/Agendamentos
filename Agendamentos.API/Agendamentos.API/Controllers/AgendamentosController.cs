@@ -1,4 +1,5 @@
 using Agendamentos.Entidade.DTO;
+using Agendamentos.Entidade.Models;
 using Agendamentos.Negocio.Interface.INegocios;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,45 +9,41 @@ namespace Agendamentos.API.Controllers
     [Route("api/[controller]")]
     public class AgendamentosController : ControllerBase
     {
-        private static List<string> AgendamentosMarcados { get; set; } = new() { "Ag1", "Ag2", "Ag3" };
-
-        private readonly ILogger<AgendamentosController> _logger;
         private readonly IAgendamentoNegocio _agendamentoNegocio;
 
         public AgendamentosController(ILogger<AgendamentosController> logger, IAgendamentoNegocio agendamentoNegocio)
         {
-            _logger = logger;
             _agendamentoNegocio = agendamentoNegocio;
         }
 
         [HttpGet("GetAgendamentos")] //retorna a lista de ag
-        public ActionResult<List<AgendamentoDTO>> ListarTodos()
+        public async Task<List<AgendamentoDTO>> ListarTodos()
         {
-            return _agendamentoNegocio.ListarAgendamentos(null);
+            return await _agendamentoNegocio.ListarAgendamentos(null);
         }
 
         [HttpGet("FilterAgendamentos")] //retorna o ag enviado
-        public ActionResult<List<AgendamentoDTO>> FiltrarAgendamentos(string agendamentos)
+        public async Task<List<AgendamentoDTO>> FiltrarAgendamentos(int agendamentos)
         {
-            return _agendamentoNegocio.ListarAgendamentos(new List<string>() { agendamentos });
+            return await _agendamentoNegocio.ListarAgendamentos(new List<int>() { agendamentos });
         }
 
         [HttpPost("PostAgendamentos")] //adiciona um ag
-        public ActionResult<List<AgendamentoDTO>> Post(string novoAgendamento)
+        public async Task<List<AgendamentoDTO>> Post(CadastroAgendamentoModel novoAgendamento)
         {
-            return _agendamentoNegocio.InserirAgendamentos(novoAgendamento);
+            return await _agendamentoNegocio.InserirAgendamentos(novoAgendamento);
         }
 
         [HttpDelete("DelAgendamentos")]
-        public ActionResult<List<AgendamentoDTO>> Delete(string agendamento) //remove um ag
+        public async Task<List<AgendamentoDTO>> Delete(int agendamento) //remove um ag
         {
-            return _agendamentoNegocio.DeletarAgendamentos(agendamento);
+            return await _agendamentoNegocio.DeletarAgendamentos(agendamento);
         }
 
         [HttpPut("AltAgendamentos")] //altera um ag
-        public ActionResult<List<AgendamentoDTO>> Put(string agendamento, string novoNomeAg)
+        public async Task<List<AgendamentoDTO>> Put(int idAgendamento, CadastroAgendamentoModel novoAg)
         {
-            return _agendamentoNegocio.AlterarAgendamentos(agendamento, novoNomeAg);
+            return await _agendamentoNegocio.AlterarAgendamentos(idAgendamento, novoAg);
         }
     }
 }
