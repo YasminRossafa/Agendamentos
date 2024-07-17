@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34902.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.API", "Agendamentos.API\Agendamentos.API.csproj", "{92390008-650E-4646-BB67-A492314D0BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.API", "Agendamentos.API\Agendamentos.API.csproj", "{92390008-650E-4646-BB67-A492314D0BBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Repositorio.Interface", "Agendamentos.Repositorio.Interface\Agendamentos.Repositorio.Interface.csproj", "{7E4E7626-A666-4F51-B0CA-FF73414F546D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Repositorio.Interface", "Agendamentos.Repositorio.Interface\Agendamentos.Repositorio.Interface.csproj", "{7E4E7626-A666-4F51-B0CA-FF73414F546D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Repositorio", "Agendamentos.Repositorio\Agendamentos.Repositorio.csproj", "{14E9C99C-5A70-4B3C-B678-7869A4C9C3AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Repositorio", "Agendamentos.Repositorio\Agendamentos.Repositorio.csproj", "{14E9C99C-5A70-4B3C-B678-7869A4C9C3AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Negocio", "Agendamentos.Negocio\Agendamentos.Negocio.csproj", "{CA7B73A1-2671-4F44-AB14-7635774680D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Negocio", "Agendamentos.Negocio\Agendamentos.Negocio.csproj", "{CA7B73A1-2671-4F44-AB14-7635774680D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Negocio.Interface", "Agendamentos.Negocio.Interface\Agendamentos.Negocio.Interface.csproj", "{2F52D22E-C1D5-474D-B914-75A5304C8937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Negocio.Interface", "Agendamentos.Negocio.Interface\Agendamentos.Negocio.Interface.csproj", "{2F52D22E-C1D5-474D-B914-75A5304C8937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Entidade", "Agendamentos.Entidade\Agendamentos.Entidade.csproj", "{627E887E-8531-4501-B6E6-84463B62CAD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Entidade", "Agendamentos.Entidade\Agendamentos.Entidade.csproj", "{627E887E-8531-4501-B6E6-84463B62CAD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agendamentos.Utilitarios", "Agendamentos.Utilitarios\Agendamentos.Utilitarios.csproj", "{1741D773-B85F-4FAE-BC53-68CD543D93A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Utilitarios", "Agendamentos.Utilitarios\Agendamentos.Utilitarios.csproj", "{1741D773-B85F-4FAE-BC53-68CD543D93A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agendamentos.Validador", "Agendamento.Validador\Agendamentos.Validador.csproj", "{102C39A6-DE13-4954-B0A7-A9BD1499FE7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{1741D773-B85F-4FAE-BC53-68CD543D93A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1741D773-B85F-4FAE-BC53-68CD543D93A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1741D773-B85F-4FAE-BC53-68CD543D93A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{102C39A6-DE13-4954-B0A7-A9BD1499FE7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102C39A6-DE13-4954-B0A7-A9BD1499FE7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102C39A6-DE13-4954-B0A7-A9BD1499FE7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102C39A6-DE13-4954-B0A7-A9BD1499FE7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

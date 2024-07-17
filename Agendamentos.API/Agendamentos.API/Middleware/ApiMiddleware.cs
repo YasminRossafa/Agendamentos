@@ -2,6 +2,7 @@
 using Agendamentos.Utilitarios.Messages;
 using Newtonsoft.Json;
 using System.Net;
+using Agendamentos.Utilitarios.Exceptions;
 
 namespace Agendamentos.API.Middleware
 {

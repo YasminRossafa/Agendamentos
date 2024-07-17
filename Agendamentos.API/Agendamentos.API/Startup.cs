@@ -1,21 +1,28 @@
-﻿using Agendamentos.API.Middleware;
-using Agendamentos.Negocio.Interface.INegocios;
-using Agendamentos.Negocio.Negocios;
-using Agendamentos.Repositorio.Interface.IAgendamentoRepositorio;
-using Agendamentos.Repositorio.Repositorios;
+﻿using Agendamentos.API.Configuracao;
+using Agendamentos.API.Configuraçao;
+using Agendamentos.API.Middleware;
 using Microsoft.OpenApi.Any;
 
 namespace Agendamentos.API
 {
     public class Startup
     {
-        public Startup() { }
+        public IConfiguration Configuracao { get; }
+        public Startup(IConfiguration configuracao) 
+        { 
+            Configuracao = configuracao;
+        }
 
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services) 
+        {
             services.AddControllers();
 
-            services.AddScoped<IAgendamentoRepositorio, AgendamentoRepositorio>();
-            services.AddScoped<IAgendamentoNegocio, AgendamentoNegocio>();
+            services.AddInjecaoDependencia(Configuracao);
+
+            services.AddDataBaseConfig(Configuracao);
+
+            services.AddFluentConfig();
+
             services.AddTransient<ApiMiddleware>();
 
             services.AddSwaggerGen(c =>
@@ -30,7 +37,11 @@ namespace Agendamentos.API
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) { 
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 
+        {
+            if (env.IsDevelopment()) 
+                app.UseDeveloperExceptionPage();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

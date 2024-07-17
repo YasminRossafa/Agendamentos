@@ -1,48 +1,48 @@
 ﻿using Agendamentos.Entidade.DTO;
 using Agendamentos.Entidade.Entidades;
 using Agendamentos.Repositorio.Interface.IAgendamentoRepositorio;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agendamentos.Repositorio.Repositorios
 {
-    public class AgendamentoRepositorio : IAgendamentoRepositorio
+    public class AgendamentoRepositorio : RepositorioBase<Agendamento>, IAgendamentoRepositorio
     {
-        private static List<Agendamento> AgendamentosMarcados { get; set; } = new() { new("Ag1"), new("Ag2"), new("Ag3") };
+        public AgendamentoRepositorio(Contexto contexto) : base(contexto) { }
 
-        public void Deletar(Agendamento agendamento)
+        public Task<List<AgendamentoDTO>> ListarAgendamentos(List<int> agendamentos)
         {
-            AgendamentosMarcados.Remove(agendamento);
+            var query = EntitySet.Where(ag => agendamentos.Contains(ag.Id))
+                                 .OrderBy(ag => ag.dat_agendamento)
+                                 .Distinct()
+                                 .Select(ag => new AgendamentoDTO
+                                 {
+                                     dat_agendamento = ag.dat_agendamento,
+                                     hor_agendamento = ag.hor_agendamento,
+                                     dsc_status = ag.dsc_status
+                                 });
+            return query.ToListAsync();
         }
 
-        public void Inserir(Agendamento agendamento)
+        public Task<List<AgendamentoDTO>> ListarTudo()
         {
-            AgendamentosMarcados.Add(agendamento);
+            var query = EntitySet.OrderBy(ag => ag.dat_agendamento)
+                                 .Distinct()
+                                 .Select(ag => new AgendamentoDTO
+                                 {
+                                     dat_agendamento = ag.dat_agendamento,
+                                     hor_agendamento = ag.hor_agendamento,
+                                     dsc_status = ag.dsc_status
+                                 });
+            return query.ToListAsync();
         }
 
-        public List<AgendamentoDTO> ListarAgendamentos(List<string> agendamentos)
-        {                                                               //contém titulo maiúsculo
-            return AgendamentosMarcados.Where(agendamento => agendamentos.Contains(agendamento.Titulo.ToUpper()))
-                                       .OrderBy(agendamento => agendamento.Titulo)
-                                       .Distinct()
-                                       .Select(agendamento => new AgendamentoDTO
-                                       {
-                                           Titulo = agendamento.Titulo
-                                       })
-                                       .ToList();
-        }
-        public List<AgendamentoDTO> ListarTudo()
+        public Task<Agendamento> ObterAg(int id)
         {
-            return AgendamentosMarcados.OrderBy(agendamento => agendamento.Titulo)
-                                       .Distinct()
-                                       .Select(agendamento => new AgendamentoDTO
-                                       {
-                                           Titulo = agendamento.Titulo
-                                       })
-                                       .ToList();
-        }
 
-        public Agendamento? ObterAg(string tituloAg)
-        {
-            return AgendamentosMarcados.Find(e => e.Titulo.ToLower() == tituloAg.ToLower());
+            return ObterPorId(id);
+            //var query = EntitySet.Include(e => e.Id)
+            //                     .Where(e => e.Id == id);
+            //return query.FirstOrDefaultAsync();
         }
     }
 }
