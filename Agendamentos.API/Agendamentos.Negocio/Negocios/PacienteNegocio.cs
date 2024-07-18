@@ -11,8 +11,6 @@ namespace Agendamentos.Negocio.Negocios
 {
     public class PacienteNegocio : IPacienteNegocio
     {
-        private static readonly ILog _log = LogManager.GetLogger(typeof(PacienteNegocio)); //para usar os logs
-
         private readonly IPacienteRepositorio _pacienteRepositorio;
         public PacienteNegocio(IPacienteRepositorio pacienteRepositorio)
         {
@@ -25,34 +23,5 @@ namespace Agendamentos.Negocio.Negocios
 
         }
 
-        public async Task<List<PacienteDTO>> InserirPaciente(CadastroPacienteModel novoPaciente)
-        {
-            var paciente = await _pacienteRepositorio.ObterPc(novoPaciente.dsc_nome);
-
-            if (paciente != null)
-            {
-                _log.InfoFormat(BusinessMessages.PacienteExistente, paciente.dsc_nome);
-                throw new BusinessException(string.Format(BusinessMessages.PacienteExistente, paciente.dsc_nome));
-            }
-
-            paciente = CriarPaciente(novoPaciente);
-
-            await _pacienteRepositorio.Inserir(paciente);
-
-            _log.InfoFormat("Paciente inserido.");
-
-            return await _pacienteRepositorio.ListarTodos();
-        }
-
-        private static Paciente CriarPaciente(CadastroPacienteModel paciente)
-        {
-            var pc = new Paciente
-            {
-                dsc_nome = paciente.dsc_nome,
-                dat_nascimento = paciente.dat_nascimento,
-                dat_criacao = paciente.dat_criacao
-            };
-            return pc;
-        }
     }
 }

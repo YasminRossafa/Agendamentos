@@ -88,11 +88,29 @@ namespace Agendamentos.Utilitarios.Messages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Número máximo de agendamentos por horário atingido..
+        /// </summary>
+        public static string NumeroMaximo {
+            get {
+                return ResourceManager.GetString("NumeroMaximo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Paciente &quot;{0}&quot; já existe..
         /// </summary>
         public static string PacienteExistente {
             get {
                 return ResourceManager.GetString("PacienteExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O paciente não exite na base..
+        /// </summary>
+        public static string PacienteNaoEncontrado {
+            get {
+                return ResourceManager.GetString("PacienteNaoEncontrado", resourceCulture);
             }
         }
         

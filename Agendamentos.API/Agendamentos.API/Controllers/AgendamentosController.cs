@@ -23,9 +23,9 @@ namespace Agendamentos.API.Controllers
         }
 
         [HttpGet("FilterAgendamentos")] //retorna o ag enviado
-        public async Task<List<AgendamentoDTO>> FiltrarAgendamentos(int agendamentos)
+        public async Task<List<AgendamentoDTO>> FiltrarAgendamentos(DateTime agendamentos)
         {
-            return await _agendamentoNegocio.ListarAgendamentos(new List<int>() { agendamentos });
+            return await _agendamentoNegocio.ListarAgendamentos(new List<DateTime>() { agendamentos });
         }
 
         [HttpPost("PostAgendamentos")] //adiciona um ag
@@ -34,16 +34,10 @@ namespace Agendamentos.API.Controllers
             return await _agendamentoNegocio.InserirAgendamentos(novoAgendamento);
         }
 
-        [HttpDelete("DelAgendamentos")]
-        public async Task<List<AgendamentoDTO>> Delete(int agendamento) //remove um ag
-        {
-            return await _agendamentoNegocio.DeletarAgendamentos(agendamento);
-        }
-
         [HttpPut("AltAgendamentos")] //altera um ag
-        public async Task<List<AgendamentoDTO>> Put(int idAgendamento, CadastroAgendamentoModel novoAg)
+        public async Task<List<AgendamentoDTO>> Put(DateTime dia, TimeSpan hora, string status)
         {
-            return await _agendamentoNegocio.AlterarAgendamentos(idAgendamento, novoAg);
+            return await _agendamentoNegocio.AlterarAgendamentos(dia, hora, status);
         }
     }
 }

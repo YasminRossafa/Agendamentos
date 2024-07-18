@@ -14,6 +14,8 @@ namespace Agendamentos.Entidade.Entidades
 
         public DateTime dat_criacao { get; set; } = DateTime.Now;
 
+        public Paciente Paciente { get; set; }
+
         public Agendamento()
         {
             

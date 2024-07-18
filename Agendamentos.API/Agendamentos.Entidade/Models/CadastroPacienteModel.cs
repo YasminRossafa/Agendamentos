@@ -13,7 +13,6 @@ namespace Agendamentos.Entidade.Models
 
         public DateTime dat_nascimento { get; set; }
 
-        public DateTime dat_criacao { get; set; } = DateTime.Now;
 
     }
 }

@@ -6,8 +6,7 @@ namespace Agendamentos.Repositorio.Interface.IRepositorios
 {
     public interface IPacienteRepositorio : IRepositorioBase<Paciente>
     {
-        Task<List<PacienteDTO>> ListarPacientes(string nomes);
-        Task<List<PacienteDTO>> ListarTodos();
+        Task<List<PacienteDTO>> ListarPacientes(string nomes);        
         Task<Paciente> ObterPc(string nome);
     }
 }

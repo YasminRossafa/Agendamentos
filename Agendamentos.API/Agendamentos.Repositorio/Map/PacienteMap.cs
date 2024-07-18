@@ -14,7 +14,8 @@ namespace Agendamentos.Repositorio.Map
 
             builder.Property(e => e.Id)
                    .HasColumnName("id_paciente")
-                   .IsRequired();
+                   .IsRequired()
+                   .ValueGeneratedOnAdd();
 
             builder.Property(e => e.dat_criacao)
                    .HasColumnName("dat_criacao")

@@ -17,7 +17,6 @@ namespace Agendamentos.Repositorio.Map
                    .IsRequired()
                    .ValueGeneratedOnAdd();
 
-
            builder.Property(e => e.id_paciente)
                    .HasColumnName("id_paciente")
                    .IsRequired();
@@ -42,6 +41,12 @@ namespace Agendamentos.Repositorio.Map
                    .IsRequired()
                    .HasMaxLength(50)
                    .IsUnicode(false);
+
+            // Configurar o relacionamento com Paciente
+            builder.HasOne(a => a.Paciente)
+                   .WithMany(p => p.Agendamentos)
+                   .HasForeignKey(a => a.id_paciente)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

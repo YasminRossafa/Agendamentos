@@ -126,8 +126,14 @@
   <data name="CampoObrigatorio" xml:space="preserve">
     <value>O campo "{0}" não pode ficar vazio.</value>
   </data>
+  <data name="NumeroMaximo" xml:space="preserve">
+    <value>Número máximo de agendamentos por horário atingido.</value>
+  </data>
   <data name="PacienteExistente" xml:space="preserve">
     <value>Paciente "{0}" já existe.</value>
+  </data>
+  <data name="PacienteNaoEncontrado" xml:space="preserve">
+    <value>O paciente não exite na base.</value>
   </data>
   <data name="TamanhoMaximo" xml:space="preserve">
     <value>Tamanho máximo "{0}" de caracteres atingido no campo "{0}"</value>
