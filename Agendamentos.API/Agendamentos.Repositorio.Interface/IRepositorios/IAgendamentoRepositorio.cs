@@ -6,8 +6,8 @@ namespace Agendamentos.Repositorio.Interface.IAgendamentoRepositorio
 {
     public interface IAgendamentoRepositorio : IRepositorioBase<Agendamento>
     {
-        Task<List<AgendamentoDTO>> ListarAgendamentos(List<int> agendamentos);
+        Task<List<AgendamentoDTO>> ListarAgendamentos(List<DateTime> agendamentos);
         Task<List<AgendamentoDTO>> ListarTudo();
-        Task<Agendamento> ObterAg(int id);
+        Task<List<Agendamento>> ObterAg(DateTime dia, TimeSpan hora);
     }
 }

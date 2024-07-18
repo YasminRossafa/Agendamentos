@@ -18,20 +18,6 @@ namespace Agendamentos.Repositorio.Repositorios
                                  .Select(pc => new PacienteDTO
                                  {
                                      dsc_nome = pc.dsc_nome,
-                                     dat_criacao = pc.dat_criacao,
-                                     dat_nascimento = pc.dat_nascimento
-                                 });
-            return query.ToListAsync();
-        }
-
-        public Task<List<PacienteDTO>> ListarTodos()
-        {
-            var query = EntitySet.OrderBy(pc => pc.dsc_nome)
-                                 .Distinct()
-                                 .Select(pc => new PacienteDTO
-                                 {
-                                     dsc_nome = pc.dsc_nome,
-                                     dat_criacao = pc.dat_criacao,
                                      dat_nascimento = pc.dat_nascimento
                                  });
             return query.ToListAsync();

@@ -17,12 +17,6 @@ namespace Agendamentos.API.Controllers
             _pacienteNegocio = pacienteNegocio;
         }
 
-        [HttpPost("PostPacientes")]
-        public async Task<List<PacienteDTO>> InserirPaciente(CadastroPacienteModel novoPaciente)
-        {
-            return await _pacienteNegocio.InserirPaciente(novoPaciente);
-        }
-
         [HttpGet("FilterPacientes")]
         public async Task<List<PacienteDTO>> FiltrarPaciente(string nome)
         {
