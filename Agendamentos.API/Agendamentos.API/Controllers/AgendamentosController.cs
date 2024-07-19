@@ -39,5 +39,11 @@ namespace Agendamentos.API.Controllers
         {
             return await _agendamentoNegocio.AlterarAgendamentos(dia, hora, status);
         }
+
+        [HttpPut("DelAgendamentos")] //deleta um ag
+        public async Task<List<AgendamentoDTO>> Delele(DateTime dia, TimeSpan hora)
+        {
+            return await _agendamentoNegocio.DeletarAgendamentos(dia, hora);
+        }
     }
 }

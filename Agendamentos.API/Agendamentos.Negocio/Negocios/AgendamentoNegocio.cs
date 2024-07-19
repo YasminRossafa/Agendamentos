@@ -100,5 +100,24 @@ namespace Agendamentos.Negocio.Negocios
                 return await _agendamentoRepositorio.ListarAgendamentos(agendamentos);
             }
         }
+
+        public async Task<List<AgendamentoDTO>> DeletarAgendamentos(DateTime dia, TimeSpan hora)
+        {
+            var agExistente = await _agendamentoRepositorio.ObterAg(dia, hora); //encontra o ag na lista
+
+            if (agExistente.Count == 0) // se não for nulo, altera
+            {
+                _log.InfoFormat("Esse agendamento não existe na base");
+                throw new BusinessException(string.Format(BusinessMessages.AgendamentoInexistente, "ag"));
+            }
+
+            foreach (var ag in agExistente)
+            {
+                await _agendamentoRepositorio.Deletar(ag);
+            }
+
+            _log.InfoFormat("Agendamento deletado!");
+            return await _agendamentoRepositorio.ListarTudo();
+        }
     }
 }

@@ -141,6 +141,49 @@ namespace Agendamentos.TestesUnitarios
             Assert.AreEqual(1, result.Count);
         }
 
+        [Test]
+        public async Task DeletarAgendamentos_Sucesso()
+        {
+            var data = DateTime.Now.Date;
+            var hora = TimeSpan.FromHours(10);
+
+            var agendamento = new Agendamento
+            {
+                dat_agendamento = data,
+                hor_agendamento = hora
+            };
+
+            _moqAgendamentoRepositorio.Setup(r => r.ObterAg(data, hora))
+                                      .ReturnsAsync(new List<Agendamento> { agendamento });
+
+            _moqAgendamentoRepositorio.Setup(r => r.Deletar(It.IsAny<Agendamento>()))
+                                      .Returns(Task.CompletedTask);
+
+            _moqAgendamentoRepositorio.Setup(r => r.ListarTudo())
+                                      .ReturnsAsync(new List<AgendamentoDTO> { new AgendamentoDTO() });
+
+            var result = await _negocio.DeletarAgendamentos(data, hora);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            _moqAgendamentoRepositorio.Verify(r => r.Deletar(It.IsAny<Agendamento>()), Times.Once);
+            _moqAgendamentoRepositorio.Verify(r => r.ListarTudo(), Times.Once);
+        }
+
+        [Test]
+        public void DeletarAgendamentos_AgendamentoInexistente()
+        {
+            var data = DateTime.Now.Date;
+            var hora = TimeSpan.FromHours(10);
+
+            _moqAgendamentoRepositorio.Setup(r => r.ObterAg(data, hora))
+                                      .ReturnsAsync(new List<Agendamento>());
+
+            var ex = Assert.ThrowsAsync<BusinessException>(() => _negocio.DeletarAgendamentos(data, hora));
+            Assert.AreEqual(string.Format(BusinessMessages.AgendamentoInexistente, "ag"), ex.Message);
+            _moqAgendamentoRepositorio.Verify(r => r.ObterAg(data, hora), Times.Once);
+        }
+
     }
 }
 
